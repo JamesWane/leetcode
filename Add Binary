@@ -1,0 +1,32 @@
+// this is the first problem I encountered in the leetcode app in ios, so I see it as a good opportunity to start my leetcode journey
+/* Given two binary strings, return their sum (also a binary string)
+For example, 
+a = "11"
+b = "1"
+Return "100"
+Difficulity: easy
+*/
+
+public class AddBinary {
+	public static void main(String[] args) {
+		String a, b;
+		a = "abc";
+		b = "1";
+		System.out.println(addBinary(a,b));
+	}
+
+	public static String addBinary(String a, String b) {
+		if (a == null || b == null) {
+			return "at least one of the two strings is null";
+		}
+		StringBuffer result = new StringBuffer();
+		for(int i = a.length() - 1, j = b.length() - 1, carry = 0; i >= 0 || j >= 0 || carry != 0; i--, j--) {
+			int num1 = i >= 0 ? Character.getNumericValue(a.charAt(i)) : 0;
+			int num2 = j >= 0 ? Character.getNumericValue(b.charAt(j)) : 0;
+			carry = num1 + num2 + carry;
+			result.append(carry % 2);
+			carry = carry / 2;
+		}
+		return result.reverse().toString();
+	}
+}
